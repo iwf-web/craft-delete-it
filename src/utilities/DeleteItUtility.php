@@ -13,7 +13,7 @@ class DeleteItUtility extends Utility
      */
     public static function displayName(): string
     {
-        return Craft::t('deleteIt', 'Delete It!');
+        return Craft::t('delete-it', 'Delete It!');
     }
 
     /**

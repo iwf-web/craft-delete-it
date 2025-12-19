@@ -40,16 +40,16 @@ class DeleteItController extends Controller
 
         $response = "";
         if ($countSections > 0 && $countProductTypes > 0) {
-            $response = $response . (Craft::t('deleteIt', 'Deleted {count1} entries and {count2} products.', ['count1' => $countSections, 'count2' => $countProductTypes]));
+            $response = $response . (Craft::t('delete-it', 'Deleted {count1} entries and {count2} products.', ['count1' => $countSections, 'count2' => $countProductTypes]));
         }
         else if ($countSections > 0) {
-            $response = $response . (Craft::t('deleteIt', 'Deleted {count} entries.', ['count' => $countSections]));
+            $response = $response . (Craft::t('delete-it', 'Deleted {count} entries.', ['count' => $countSections]));
         }
         else if ($countProductTypes > 0) {
-            $response = $response . (Craft::t('deleteIt', 'Deleted {count} products.', ['count' => $countProductTypes]));
+            $response = $response . (Craft::t('delete-it', 'Deleted {count} products.', ['count' => $countProductTypes]));
         }
         else {
-            $response = (Craft::t('deleteIt', 'No items were selected for deletion.'));
+            $response = (Craft::t('delete-it', 'No items were selected for deletion.'));
         }
 
         return $this->getSuccessResponse($response);
@@ -58,7 +58,7 @@ class DeleteItController extends Controller
 
     private function getSuccessResponse(string $message): ?Response
     {
-        $this->setSuccessFlash(Craft::t('deleteIt', $message));
+        $this->setSuccessFlash($message);
         return $this->getResponse($message);
     }
 
@@ -69,7 +69,7 @@ class DeleteItController extends Controller
         if (Craft::$app->getView()->templateMode == View::TEMPLATE_MODE_SITE || $request->getAcceptsJson()) {
             return $this->asJson([
                 'success' => $success,
-                'message' => Craft::t('deleteIt', $message),
+                'message' => $message,
             ]);
         }
 

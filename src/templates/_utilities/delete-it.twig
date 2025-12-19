@@ -10,7 +10,7 @@
     }
 {% endcss %}
 
-<h1>{{ 'Delete It!'|t('deleteIt') }}</h1>
+<h1>{{ 'Delete It!'|t('delete-it') }}</h1>
 
 <form class="utility" method="post" accept-charset="UTF-8">
 
@@ -29,7 +29,7 @@
 
     {% if sections|length %}
         <fieldset class="checkbox-select">
-            <h2>{{ 'Sections'|t('deleteIt') }}</h2>
+            <h2>{{ 'Sections'|t('delete-it') }}</h2>
             {% for section in sections %}
                 {% if section.type != "single" %}
                     <div class="checkbox-select-item">
@@ -53,7 +53,7 @@
 
     {% if productTypes|length %}
         <fieldset class="checkbox-select">
-            <h2>{{ 'ProductTypes'|t('deleteIt') }}</h2>
+            <h2>{{ 'ProductTypes'|t('delete-it') }}</h2>
             {% for productType in productTypes %}
                 <div class="checkbox-select-item">
                     <input type="checkbox"
@@ -72,6 +72,6 @@
     {% endif %}
 
     {{ actionInput('delete-it/delete-it/delete') }}
-    <input type="submit" class="btn submit" value="{{ 'Delete It'|t('deleteIt') }}">
+    <input type="submit" class="btn submit" value="{{ 'Delete It'|t('delete-it') }}">
 
 </form>
