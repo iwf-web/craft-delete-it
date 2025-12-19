@@ -1,0 +1,77 @@
+{% import "_includes/forms" as forms %}
+
+{% css %}
+    label {
+        display: flex;
+        align-items: center;
+    }
+    label input {
+        margin-right:8px;
+    }
+{% endcss %}
+
+<h1>{{ 'Delete It!'|t('deleteIt') }}</h1>
+
+<form class="utility" method="post" accept-charset="UTF-8">
+
+    {{ redirectInput('utilities/delete-it') }}
+
+    {{ csrfInput() }}
+
+    <div class="error-summary" tabindex="-1">
+        <div>
+            <span class="notification-icon" data-icon="alert" aria-label="Error" role="img"></span>
+            <h2>Attention!</h2>
+            <p>This plugin does what it says - it will delete ALL <strong>active</strong> entries in your chosen section(s) and/or product type(s)!</p>
+            <p>Handle with care and only use on local/dev-environments, not on live!</p>
+        </div>
+    </div>
+
+    {% if sections|length %}
+        <fieldset class="checkbox-select">
+            <h2>{{ 'Sections'|t('deleteIt') }}</h2>
+            {% for section in sections %}
+                {% if section.type != "single" %}
+                    <div class="checkbox-select-item">
+                        <input type="checkbox"
+                               class="checkbox"
+                               id="checkbox{{ section.id }}"
+                               name="sections[]"
+                               value="{{ section.handle }}">
+                        <label for="checkbox{{ section.id }}">
+                            <strong>{{ section.name }}</strong>&nbsp;-
+                            {{ craft.entries.section(section.handle).count() }} entries
+                            (handle:&nbsp;<strong>{{ section.handle }}</strong>)
+                        </label>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+    {% endif %}
+
+    <br>
+
+    {% if productTypes|length %}
+        <fieldset class="checkbox-select">
+            <h2>{{ 'ProductTypes'|t('deleteIt') }}</h2>
+            {% for productType in productTypes %}
+                <div class="checkbox-select-item">
+                    <input type="checkbox"
+                           class="checkbox"
+                           id="productType{{ productType.id }}"
+                           name="productTypes[]"
+                           value="{{ productType.handle }}">
+                    <label for="productType{{ productType.id }}">
+                        <strong>{{ productType.name }}</strong>&nbsp;-
+                        {{ craft.products.type(productType.handle).count() }} products
+                        (handle:&nbsp;<strong>{{ productType.handle }}</strong>)
+                    </label>
+                </div>
+            {% endfor %}
+        </fieldset>
+    {% endif %}
+
+    {{ actionInput('delete-it/delete-it/delete') }}
+    <input type="submit" class="btn submit" value="{{ 'Delete It'|t('deleteIt') }}">
+
+</form>
