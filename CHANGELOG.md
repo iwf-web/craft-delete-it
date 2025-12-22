@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.2](https://github.com/iwf-web/craft-delete-it/compare/1.0.1...1.0.2) (2025-12-22)
+## [1.0.2](https://github.com/iwf-web/craft-delete-it/compare/1.0.1...1.0.2) - 2025-12-22
 
 
 ### 🐛 Bug Fixes
