@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/iwf-web/craft-delete-it/compare/1.0.1...1.0.2) - 2025-12-22
+
+
+### 🐛 Bug Fixes
+
+* Changelog version titles must follow craft standard ([30c0e65](https://github.com/iwf-web/craft-delete-it/commit/30c0e65833e634c03d2a4dee93b3cbf7f652e22b))
+
 ## [1.0.1](https://github.com/iwf-web/craft-delete-it/compare/1.0.0...1.0.1) - 2025-12-22
 
 
