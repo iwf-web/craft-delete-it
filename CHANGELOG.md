@@ -1,5 +1,7 @@
 # Changelog
 
+Please delete me again
+
 ## [1.0.3](https://github.com/iwf-web/craft-delete-it/compare/1.0.2...1.0.3) - 2025-12-22
 
 
