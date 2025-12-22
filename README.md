@@ -8,7 +8,7 @@ Plugin will delete ALL active entries in your chosen section(s) and/or product t
 
 Handle with care and only use on local/dev-environments, not on live!
 
-![Screenshot](resources/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/iwf-web/craft-delete-it/refs/heads/main/resources/screenshot.png)
 
 Brought to you by [IWF](https://www.iwf.ch/web-solutions).
 
