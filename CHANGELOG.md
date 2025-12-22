@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/iwf-web/craft-delete-it/compare/1.0.2...1.0.3) - 2025-12-22
+
+
+### 🐛 Bug Fixes
+
+* Changelog and Readme not present in installs ([c963c12](https://github.com/iwf-web/craft-delete-it/commit/c963c12427fc99c4f9201c66a253accb5405953b))
+* Test new amend logic ([d4caf43](https://github.com/iwf-web/craft-delete-it/commit/d4caf43d9482ed0fbbbeb941a2284c104e753fd9))
+
 ## [1.0.2](https://github.com/iwf-web/craft-delete-it/compare/1.0.1...1.0.2) - 2025-12-22
 
 
