@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/iwf-web/craft-delete-it/compare/1.0.0...1.0.1) (2025-12-22)
+
+
+### 🐛 Bug Fixes
+
+* Release config wrong, maybe ([116c723](https://github.com/iwf-web/craft-delete-it/commit/116c723ed56d0515132d9d51deca3748ff891a01))
+
 ## [1.0.0](https://github.com/iwf-web/craft-delete-it/compare/84d402e...1.0.0) (2025-12-19)
 
 
