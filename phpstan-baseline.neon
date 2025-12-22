@@ -1,0 +1,49 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to static property \$app on an unknown class Craft\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/DeleteIt.php
+
+		-
+			message: '#^Access to static property \$app on an unknown class Craft\.$#'
+			identifier: class.notFound
+			count: 6
+			path: src/controllers/DeleteItController.php
+
+		-
+			message: '#^Call to static method find\(\) on an unknown class craft\\commerce\\elements\\Product\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/controllers/DeleteItController.php
+
+		-
+			message: '#^Call to static method t\(\) on an unknown class Craft\.$#'
+			identifier: class.notFound
+			count: 4
+			path: src/controllers/DeleteItController.php
+
+		-
+			message: '#^Access to static property \$app on an unknown class Craft\.$#'
+			identifier: class.notFound
+			count: 3
+			path: src/utilities/DeleteItUtility.php
+
+		-
+			message: '#^Call to static method getAlias\(\) on an unknown class Craft\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/utilities/DeleteItUtility.php
+
+		-
+			message: '#^Call to static method getInstance\(\) on an unknown class craft\\commerce\\Plugin\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/utilities/DeleteItUtility.php
+
+		-
+			message: '#^Call to static method t\(\) on an unknown class Craft\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/utilities/DeleteItUtility.php

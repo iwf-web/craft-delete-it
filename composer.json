@@ -1,0 +1,87 @@
+{
+    "name": "iwf/craft-delete-it",
+    "description": "Plugin to bulk-delete entries or products",
+    "type": "craft-plugin",
+    "keywords": [
+        "craft-cms",
+        "craft-cms-plugin",
+        "craft-plugin",
+        "delete",
+        "bulk-delete",
+        "entries",
+        "products"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stefan Friedrich",
+            "email": "s.friedrich@iwf.ch",
+            "homepage": "https://github.com/stefanfriedrich",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "email": "s.friedrich@iwf.ch",
+        "issues": "https://github.com/iwf-web/craft-delete-it/issues",
+        "forum": "https://github.com/iwf-web/craft-delete-it/discussions",
+        "wiki": "https://github.com/iwf-web/craft-delete-it/wiki",
+        "source": "https://github.com/iwf-web/craft-delete-it",
+        "docs": "https://github.com/iwf-web/craft-delete-it",
+        "rss": "https://github.com/iwf-web/craft-delete-it/releases.atom"
+    },
+    "require": {
+        "php": ">=8.2",
+        "craftcms/cms": "^5.0.0"
+    },
+    "require-dev": {
+        "craftcms/ecs": "dev-main",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "iwf-web/php-coding-standard": "^1.0",
+        "phpstan/phpstan": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "iwf\\craftdeleteit\\": "src/"
+        }
+    },
+    "extra": {
+        "handle": "delete-it",
+        "name": "Delete it",
+        "developer": "IWF",
+        "developerUrl": "https://www.iwf.ch/web-solutions",
+        "documentationUrl": "https://github.com/iwf-web/craft-delete-it",
+        "class": "iwf\\craftdeleteit\\DeleteIt"
+    },
+    "scripts": {
+        "check-cs": "ecs check --ansi",
+        "fix-cs": "ecs check --ansi --fix",
+        "phpstan": "phpstan --memory-limit=1G"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.2"
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    },
+    "archive": {
+        "exclude": [
+            ".devcontainer",
+            ".github",
+            ".vscode",
+            ".editorconfig",
+            ".gitignore",
+            ".gitattributes",
+            "CODEOWNERS",
+            "*.md",
+            "*.dist.php",
+            "*.neon",
+            "*release*.json",
+            "!README.md",
+            "!CHANGELOG.md"
+        ]
+    }
+}
