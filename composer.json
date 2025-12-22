@@ -71,6 +71,7 @@
         "exclude": [
             ".devcontainer",
             ".github",
+            ".vscode",
             ".editorconfig",
             ".gitignore",
             ".gitattributes",
@@ -78,7 +79,9 @@
             "*.md",
             "*.dist.php",
             "*.neon",
-            "*release*.json"
+            "*release*.json",
+            "!README.md",
+            "!CHANGELOG.md"
         ]
     }
 }
