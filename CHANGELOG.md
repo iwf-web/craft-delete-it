@@ -2,6 +2,13 @@
 
 Please delete me again
 
+## [1.0.4](https://github.com/iwf-web/craft-delete-it/compare/1.0.3...1.0.4) - 2025-12-22
+
+
+### 🐛 Bug Fixes
+
+* Testing custom changelog ([0cfcd12](https://github.com/iwf-web/craft-delete-it/commit/0cfcd1258bc930e1ecd99c960abff1ba74da9ad9))
+
 ## [1.0.3](https://github.com/iwf-web/craft-delete-it/compare/1.0.2...1.0.3) - 2025-12-22
 
 
