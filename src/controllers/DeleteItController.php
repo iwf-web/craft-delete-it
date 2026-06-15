@@ -17,6 +17,7 @@ use craft\elements\Entry;
 use craft\elements\User;
 use craft\web\Controller;
 use craft\web\View;
+use iwf\craftdeleteit\jobs\DeleteElements;
 use yii\db\Query;
 use yii\web\Response;
 
@@ -24,32 +25,31 @@ class DeleteItController extends Controller
 {
     public function actionDelete(): ?Response
     {
+        $ids = [];
         $countSections = 0;
+        $countProductTypes = 0;
+        $countUsers = 0;
+        $currentUserId = \Craft::$app->getUser()->getId();
+
         $sections = \Craft::$app->getRequest()->getParam('sections');
         if (!empty($sections)) {
             foreach ($sections as $sectionHandle) {
-                $entryIds = Entry::find()->section($sectionHandle)->ids();
-                foreach ($entryIds as $id) {
+                foreach (Entry::find()->section($sectionHandle)->ids() as $id) {
+                    $ids[] = (int)$id;
                     ++$countSections;
-                    \Craft::$app->getElements()->deleteElementById($id, hardDelete: true);
                 }
             }
         }
 
-        $countProductTypes = 0;
         $productTypes = \Craft::$app->getRequest()->getParam('productTypes');
         if (!empty($productTypes)) {
             foreach ($productTypes as $productTypeHandle) {
-                $productIds = Product::find()->type($productTypeHandle)->limit(100)->ids();
-                foreach ($productIds as $id) {
+                foreach (Product::find()->type($productTypeHandle)->limit(null)->ids() as $id) {
+                    $ids[] = (int)$id;
                     ++$countProductTypes;
-                    \Craft::$app->getElements()->deleteElementById($id, hardDelete: true);
                 }
             }
         }
-
-        $countUsers = 0;
-        $currentUserId = \Craft::$app->getUser()->getId();
 
         $userGroups = \Craft::$app->getRequest()->getParam('userGroups');
         if (!empty($userGroups)) {
@@ -59,8 +59,8 @@ class DeleteItController extends Controller
                     $query->andWhere(['!=', 'elements.id', $currentUserId]);
                 }
                 foreach ($query->ids() as $id) {
+                    $ids[] = (int)$id;
                     ++$countUsers;
-                    \Craft::$app->getElements()->deleteElementById($id, hardDelete: true);
                 }
             }
         }
@@ -77,9 +77,17 @@ class DeleteItController extends Controller
                 $query->andWhere(['!=', 'elements.id', $currentUserId]);
             }
             foreach ($query->ids() as $id) {
+                $ids[] = (int)$id;
                 ++$countUsers;
-                \Craft::$app->getElements()->deleteElementById($id, hardDelete: true);
             }
+        }
+
+        if (empty($ids)) {
+            return $this->getSuccessResponse(\Craft::t('delete-it', 'No items were selected for deletion.'));
+        }
+
+        foreach (array_chunk($ids, 100) as $chunk) {
+            \Craft::$app->getQueue()->push(new DeleteElements(['ids' => $chunk]));
         }
 
         $parts = [];
@@ -93,9 +101,7 @@ class DeleteItController extends Controller
             $parts[] = \Craft::t('delete-it', '{count} users', ['count' => $countUsers]);
         }
 
-        $response = empty($parts)
-            ? \Craft::t('delete-it', 'No items were selected for deletion.')
-            : \Craft::t('delete-it', 'Deleted {items}.', ['items' => implode(', ', $parts)]);
+        $response = \Craft::t('delete-it', 'Queued {items} for deletion.', ['items' => implode(', ', $parts)]);
 
         return $this->getSuccessResponse($response);
     }
