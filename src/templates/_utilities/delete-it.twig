@@ -22,7 +22,7 @@
         <div>
             <span class="notification-icon" data-icon="alert" aria-label="Error" role="img"></span>
             <h2>Attention!</h2>
-            <p>This plugin does what it says - it will delete ALL <strong>active</strong> entries in your chosen section(s) and/or product type(s)!</p>
+            <p>This plugin does what it says - it will delete ALL <strong>active</strong> entries, products and/or users in your chosen section(s), product type(s) and/or user group(s)!</p>
             <p>Handle with care and only use on local/dev-environments, not on live!</p>
         </div>
     </div>
@@ -68,6 +68,42 @@
                     </label>
                 </div>
             {% endfor %}
+        </fieldset>
+    {% endif %}
+
+    {% if userGroups|length or ungroupedUserCount %}
+        <br>
+
+        <fieldset class="checkbox-select">
+            <h2>{{ 'Users'|t('delete-it') }}</h2>
+            <p class="light">{{ 'Admin users and your own account are always excluded.'|t('delete-it') }}</p>
+            {% for group in userGroups %}
+                <div class="checkbox-select-item">
+                    <input type="checkbox"
+                           class="checkbox"
+                           id="userGroup{{ group.id }}"
+                           name="userGroups[]"
+                           value="{{ group.handle }}">
+                    <label for="userGroup{{ group.id }}">
+                        <strong>{{ group.name }}</strong>&nbsp;-
+                        {{ craft.users.group(group.handle).admin(false).count() }} users
+                        (handle:&nbsp;<strong>{{ group.handle }}</strong>)
+                    </label>
+                </div>
+            {% endfor %}
+            {% if ungroupedUserCount %}
+                <div class="checkbox-select-item">
+                    <input type="checkbox"
+                           class="checkbox"
+                           id="ungroupedUsers"
+                           name="ungroupedUsers"
+                           value="1">
+                    <label for="ungroupedUsers">
+                        <strong>{{ 'Ungrouped'|t('delete-it') }}</strong>&nbsp;-
+                        {{ ungroupedUserCount }} users
+                    </label>
+                </div>
+            {% endif %}
         </fieldset>
     {% endif %}
 

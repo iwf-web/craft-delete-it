@@ -1,5 +1,6 @@
 .claude/settings.local.json
 CLAUDE.md
 .php-cs-fixer.cache
+.DS_Store
 /vendor/
 composer.lock

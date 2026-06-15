@@ -14,8 +14,10 @@ namespace iwf\craftdeleteit\controllers;
 
 use craft\commerce\elements\Product;
 use craft\elements\Entry;
+use craft\elements\User;
 use craft\web\Controller;
 use craft\web\View;
+use yii\db\Query;
 use yii\web\Response;
 
 class DeleteItController extends Controller
@@ -46,16 +48,54 @@ class DeleteItController extends Controller
             }
         }
 
-        $response = '';
-        if ($countSections > 0 && $countProductTypes > 0) {
-            $response .= \Craft::t('delete-it', 'Deleted {count1} entries and {count2} products.', ['count1' => $countSections, 'count2' => $countProductTypes]);
-        } elseif ($countSections > 0) {
-            $response .= \Craft::t('delete-it', 'Deleted {count} entries.', ['count' => $countSections]);
-        } elseif ($countProductTypes > 0) {
-            $response .= \Craft::t('delete-it', 'Deleted {count} products.', ['count' => $countProductTypes]);
-        } else {
-            $response = \Craft::t('delete-it', 'No items were selected for deletion.');
+        $countUsers = 0;
+        $currentUserId = \Craft::$app->getUser()->getId();
+
+        $userGroups = \Craft::$app->getRequest()->getParam('userGroups');
+        if (!empty($userGroups)) {
+            foreach ($userGroups as $groupHandle) {
+                $query = User::find()->group($groupHandle)->admin(false);
+                if ($currentUserId !== null) {
+                    $query->andWhere(['!=', 'elements.id', $currentUserId]);
+                }
+                foreach ($query->ids() as $id) {
+                    ++$countUsers;
+                    \Craft::$app->getElements()->deleteElementById($id, hardDelete: true);
+                }
+            }
         }
+
+        if (!empty(\Craft::$app->getRequest()->getParam('ungroupedUsers'))) {
+            $query = User::find()
+                ->admin(false)
+                ->andWhere(['not exists',
+                    (new Query())
+                        ->from('{{%usergroups_users}} ugu')
+                        ->where('ugu.userId = users.id'),
+                ]);
+            if ($currentUserId !== null) {
+                $query->andWhere(['!=', 'elements.id', $currentUserId]);
+            }
+            foreach ($query->ids() as $id) {
+                ++$countUsers;
+                \Craft::$app->getElements()->deleteElementById($id, hardDelete: true);
+            }
+        }
+
+        $parts = [];
+        if ($countSections > 0) {
+            $parts[] = \Craft::t('delete-it', '{count} entries', ['count' => $countSections]);
+        }
+        if ($countProductTypes > 0) {
+            $parts[] = \Craft::t('delete-it', '{count} products', ['count' => $countProductTypes]);
+        }
+        if ($countUsers > 0) {
+            $parts[] = \Craft::t('delete-it', '{count} users', ['count' => $countUsers]);
+        }
+
+        $response = empty($parts)
+            ? \Craft::t('delete-it', 'No items were selected for deletion.')
+            : \Craft::t('delete-it', 'Deleted {items}.', ['items' => implode(', ', $parts)]);
 
         return $this->getSuccessResponse($response);
     }
