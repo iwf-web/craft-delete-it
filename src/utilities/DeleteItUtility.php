@@ -5,7 +5,7 @@
  *
  * @package   CraftDeleteIt
  * @author    IWF Web Solutions <web-solutions@iwf.ch>
- * @copyright Copyright (c) 2025-2025 IWF Web Solutions <web-solutions@iwf.ch>
+ * @copyright Copyright (c) 2025-2026 IWF Web Solutions <web-solutions@iwf.ch>
  * @license   https://github.com/iwf-web/craft-delete-it/blob/main/LICENSE.txt MIT License
  * @link      https://github.com/iwf-web/craft-delete-it
  */
