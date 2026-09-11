@@ -19,13 +19,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Fetch Dependabot metadata 🔍
+      - name: Fetch Dependabot metadata
         uses: dependabot/fetch-metadata@v3
         id: metadata
         with:
           github-token: ${{ github.token }}
 
-      - name: Approve Dependabot PR if not already approved ✅
+      - name: Approve Dependabot PR if not already approved
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
@@ -38,7 +38,7 @@ jobs:
             echo "PR already approved, skipping additional approvals to minimize emails/notification noise."
           fi
 
-      - name: Enable auto-merge for Dependabot PR 🪄
+      - name: Enable auto-merge for Dependabot PR
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}

@@ -26,10 +26,10 @@ trap 'rm -f "$LOG"' EXIT
 EC=${PIPESTATUS[0]}
 
 if [ "$EC" -eq 0 ]; then
-  STATUS="✅ Passed"
+  STATUS="Passed"
   DETAILS_OPEN=""
 else
-  STATUS="❌ Failed (exit $EC)"
+  STATUS="Failed (exit $EC)"
   DETAILS_OPEN=" open"
 fi
 
