@@ -14,6 +14,8 @@ namespace iwf\craftdeleteit\utilities;
 
 use craft\base\Utility;
 use craft\commerce\Plugin;
+use craft\elements\User;
+use yii\db\Query;
 
 class DeleteItUtility extends Utility
 {
@@ -52,16 +54,30 @@ class DeleteItUtility extends Utility
      */
     public static function contentHtml(): string
     {
-        $sections = [];
-        $productTypes = [];
         $sections = \Craft::$app->getEntries()->getAllSections();
+
+        $productTypes = [];
         if (\Craft::$app->plugins->isPluginInstalled('commerce') === true) {
             $productTypes = Plugin::getInstance()->getProductTypes()->getAllProductTypes();
         }
 
+        $userGroups = \Craft::$app->getUserGroups()->getAllGroups();
+
+        $ungroupedUserCount = (int) User::find()
+            ->admin(false)
+            ->andWhere(['not exists',
+                (new Query())
+                    ->from('{{%usergroups_users}} ugu')
+                    ->where('ugu.userId = users.id'),
+            ])
+            ->count()
+        ;
+
         return \Craft::$app->getView()->renderTemplate('delete-it/_utilities/delete-it', [
             'sections' => $sections,
             'productTypes' => $productTypes,
+            'userGroups' => $userGroups,
+            'ungroupedUserCount' => $ungroupedUserCount,
         ]);
     }
 }
