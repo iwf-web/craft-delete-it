@@ -63,14 +63,15 @@ class DeleteItUtility extends Utility
 
         $userGroups = \Craft::$app->getUserGroups()->getAllGroups();
 
-        $ungroupedUserCount = (int)User::find()
+        $ungroupedUserCount = (int) User::find()
             ->admin(false)
             ->andWhere(['not exists',
                 (new Query())
                     ->from('{{%usergroups_users}} ugu')
                     ->where('ugu.userId = users.id'),
             ])
-            ->count();
+            ->count()
+        ;
 
         return \Craft::$app->getView()->renderTemplate('delete-it/_utilities/delete-it', [
             'sections' => $sections,

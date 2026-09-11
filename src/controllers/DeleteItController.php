@@ -35,7 +35,7 @@ class DeleteItController extends Controller
         if (!empty($sections)) {
             foreach ($sections as $sectionHandle) {
                 foreach (Entry::find()->section($sectionHandle)->ids() as $id) {
-                    $ids[] = (int)$id;
+                    $ids[] = (int) $id;
                     ++$countSections;
                 }
             }
@@ -45,7 +45,7 @@ class DeleteItController extends Controller
         if (!empty($productTypes)) {
             foreach ($productTypes as $productTypeHandle) {
                 foreach (Product::find()->type($productTypeHandle)->limit(null)->ids() as $id) {
-                    $ids[] = (int)$id;
+                    $ids[] = (int) $id;
                     ++$countProductTypes;
                 }
             }
@@ -59,7 +59,7 @@ class DeleteItController extends Controller
                     $query->andWhere(['!=', 'elements.id', $currentUserId]);
                 }
                 foreach ($query->ids() as $id) {
-                    $ids[] = (int)$id;
+                    $ids[] = (int) $id;
                     ++$countUsers;
                 }
             }
@@ -72,12 +72,13 @@ class DeleteItController extends Controller
                     (new Query())
                         ->from('{{%usergroups_users}} ugu')
                         ->where('ugu.userId = users.id'),
-                ]);
+                ])
+            ;
             if ($currentUserId !== null) {
                 $query->andWhere(['!=', 'elements.id', $currentUserId]);
             }
             foreach ($query->ids() as $id) {
-                $ids[] = (int)$id;
+                $ids[] = (int) $id;
                 ++$countUsers;
             }
         }
