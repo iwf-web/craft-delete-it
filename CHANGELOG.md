@@ -4,14 +4,14 @@
 
 * Testing change Changelog
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 * Testing custom changelog ([0cfcd12](https://github.com/iwf-web/craft-delete-it/commit/0cfcd1258bc930e1ecd99c960abff1ba74da9ad9))
 
 ## [1.0.3](https://github.com/iwf-web/craft-delete-it/compare/1.0.2...1.0.3) - 2025-12-22
 
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 * Changelog and Readme not present in installs ([c963c12](https://github.com/iwf-web/craft-delete-it/commit/c963c12427fc99c4f9201c66a253accb5405953b))
 * Test new amend logic ([d4caf43](https://github.com/iwf-web/craft-delete-it/commit/d4caf43d9482ed0fbbbeb941a2284c104e753fd9))
@@ -19,21 +19,21 @@
 ## [1.0.2](https://github.com/iwf-web/craft-delete-it/compare/1.0.1...1.0.2) - 2025-12-22
 
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 * Changelog version titles must follow craft standard ([30c0e65](https://github.com/iwf-web/craft-delete-it/commit/30c0e65833e634c03d2a4dee93b3cbf7f652e22b))
 
 ## [1.0.1](https://github.com/iwf-web/craft-delete-it/compare/1.0.0...1.0.1) - 2025-12-22
 
 
-### 🐛 Bug Fixes
+### Bug Fixes
 
 * Release config wrong, maybe ([116c723](https://github.com/iwf-web/craft-delete-it/commit/116c723ed56d0515132d9d51deca3748ff891a01))
 
 ## [1.0.0](https://github.com/iwf-web/craft-delete-it/compare/84d402e...1.0.0) - 2025-12-19
 
 
-### ✨ Features
+### Features
 
 * change readme, add screenshot ([cd89c0c](https://github.com/iwf-web/craft-delete-it/commit/cd89c0c3ef2ed48427d65702475bebfe32c38a67))
 * fix translation-bug ([1b049e5](https://github.com/iwf-web/craft-delete-it/commit/1b049e59ca0032d723427f190961cf38ed9e0207))
