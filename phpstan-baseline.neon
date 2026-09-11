@@ -9,19 +9,19 @@ parameters:
 		-
 			message: '#^Access to static property \$app on an unknown class Craft\.$#'
 			identifier: class.notFound
-			count: 6
+			count: 8
 			path: src/controllers/DeleteItController.php
 
 		-
 			message: '#^Call to static method t\(\) on an unknown class Craft\.$#'
 			identifier: class.notFound
-			count: 4
+			count: 5
 			path: src/controllers/DeleteItController.php
 
 		-
 			message: '#^Access to static property \$app on an unknown class Craft\.$#'
 			identifier: class.notFound
-			count: 3
+			count: 4
 			path: src/utilities/DeleteItUtility.php
 
 		-
@@ -41,3 +41,14 @@ parameters:
 			identifier: method.nonObject
 			count: 1
 			path: src/utilities/DeleteItUtility.php
+		-
+		    message: '#^Access to static property \$app on an unknown class Craft\.$#'
+		    identifier: class.notFound
+		    count: 1
+		    path: src/jobs/DeleteElements.php
+
+		-
+		    message: '#^Call to static method t\(\) on an unknown class Craft\.$#'
+		    identifier: class.notFound
+		    count: 1
+		    path: src/jobs/DeleteElements.php
