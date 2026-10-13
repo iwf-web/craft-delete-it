@@ -21,9 +21,9 @@
       "integrity": "sha256:bd7ab48a832228f633239277552c30b353867fef2e5b037e064b4e64f0b843f2"
     },
     "ghcr.io/opencodeco/devcontainers/install-php-extensions:0": {
-      "version": "0.1.225",
-      "resolved": "ghcr.io/opencodeco/devcontainers/install-php-extensions@sha256:7f8802cd8eacaf4dbdb0aa520b3b5ac859acc6e30dff387162fce7aa86de03bf",
-      "integrity": "sha256:7f8802cd8eacaf4dbdb0aa520b3b5ac859acc6e30dff387162fce7aa86de03bf"
+      "version": "0.1.226",
+      "resolved": "ghcr.io/opencodeco/devcontainers/install-php-extensions@sha256:3f6307026794cb396a5d4dbb7d236dd8f8e4bef588d145a3ce0d23897d0459c3",
+      "integrity": "sha256:3f6307026794cb396a5d4dbb7d236dd8f8e4bef588d145a3ce0d23897d0459c3"
     }
   }
 }
